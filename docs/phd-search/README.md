@@ -2,27 +2,36 @@
 
 City-first phase. Target start Fall 2027 (Spring 2027 acceptable).
 
-| File | Contents | Revision |
-|---|---|---|
-| `00-framework.md` | Selection framework: hard gates, weighted axes, city filter | rev. 2, 1 Sep 2026 |
-| `01-berlin.md` | Berlin deep pass — MBI, HU, TU, **FHI**, **FU**. Scored under rev. 2 | rev. 2, 1 Sep 2026 |
-| `_source-2026-09-01.md` | Original city-first survey (Berlin + Amsterdam + city comparison) | rev. 1 |
+## The filter
 
-`00-` and `01-` supersede §0 and §1 of the source document. Sections 2–6 of the source
-(Amsterdam, city comparison, shortlist, gaps, sourcing) are still current, except that
-**Amsterdam has not yet been rescored under rev. 2** — see `01-berlin.md` §6.
+Table-top experimental · no extreme equipment dependence (no beamlines, no PIC, not
+cleanroom-dominated) · **the PI is intellectually first-rate**, with Ömer İlday as the
+reference. Europe. That is all of it.
 
-## Standing open question
+No topic filter. No employability filter — general experimental competence is what
+transfers, and the career question is decided separately.
 
-**Continuity or pivot?** Several of the highest-scoring groups (Rauschenbeutel in
-Berlin; Verhagen and Rodriguez in Amsterdam) are calibre-5 and adjacency-1: excellent
-science that does not build on the mid-IR / photoacoustics / burst-mode background.
-Resolving this settles three top-five candidates at once and is the highest-leverage
-decision left in the search.
+## Files
 
-## Verification discipline
+| File | Contents |
+|---|---|
+| `00-framework.md` | The filter, and a record of what the two earlier versions got wrong | 
+| `02-candidates.md` | **The list.** Europe-wide, banded A/B/C, with a city map |
+| `01-berlin.md` | Berlin institutional detail: factual corrections, FHI and FU Berlin, and the full Rauschenbeutel case. Its scoring is superseded |
+| `03-access.md` | Why group web pages cannot be read from this session, and the three ways to fix it |
+| `_source-2026-09-01.md` | Original survey. Sections 2–4 (Amsterdam, city comparison) still useful as raw material |
 
-Group leadership, retirements and openings in the German and Dutch systems change
-often, and rev. 1 carried four such errors into rev. 2 (see `01-berlin.md` §1).
-Items marked **[V]** were sourced indirectly and need a direct check on the
-institutional page before anyone is contacted.
+## State
+
+- **Vienna** is the strongest single city: Aspelmeyer and Baltuška, best life-criteria
+  score of any large city, moderate rents, live referral channel.
+- **Berlin** and **Barcelona** follow with two to three band-A names each.
+- Rauschenbeutel is back in, at the top. He was cut for a topic label, which is not a
+  criterion.
+
+## Open
+
+1. Verify the **[?]** entries in `02-candidates.md` (Biegert, Cerullo, Ropers) and
+   confirm each band-A PI is taking students.
+2. Full institutional pass on **Vienna** and **Barcelona** — neither has had one.
+3. Fix web access (`03-access.md`) — running locally is the reliable route.

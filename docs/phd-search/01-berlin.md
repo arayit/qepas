@@ -1,7 +1,15 @@
 # Berlin — Deep Pass
 
 **Revision 2, 1 September 2026.** Supersedes §1 of `_source-2026-09-01.md`.
-Scored under `00-framework.md` rev. 2.
+
+> **Superseded in part.** The weighted 0–45 scoring in §2.4, §3 and §4 was dropped in
+> framework rev. 3 as false precision, and the topic-adjacency axis it used is no longer
+> a criterion at all. The candidate list that governs is `02-candidates.md`.
+> What still stands here and is not repeated elsewhere: the **factual corrections** in
+> §1 (Woggon, the TU "Laser Physics" chair, DLR, PTB Berlin), the **two missed
+> institutions** (FHI, FU Berlin), and the **full case on Rauschenbeutel** in §2 —
+> standing, funding, output, and the honest objection about what four years there
+> actually involve.
 
 > **Verification caveat.** Institutional domains (`hu-berlin.de`, `tu.berlin`,
 > `mbi-berlin.de`, `fbh-berlin.de`, `fhi.mpg.de`, `arxiv.org`) were unreachable from
