@@ -50,27 +50,27 @@ This run also gives the first responsivity estimate for methyl salicylate.
 - Wetted parts glass, stainless steel, PTFE; elastomers FKM or better where
   possible (see pump fallbacks).
 
-## Pump options (updated 14 Oct 2026)
+## Pump options (updated 20 Oct 2026)
 
-Rejected: Schwarzer SP 240 EC-LC-SO and Xavitech P200 (one EPDM-only, one
-bulk-only).
+Rejected: Schwarzer SP 240 EC-LC-SO (EPDM only), Xavitech P200 (bulk only).
+No reply yet: TCS Micropumps direct.
 
-1. **TCS Micropumps D260BLX-V** — first choice. Gas diaphragm micropump,
-   brushless, FKM diaphragm/seals, 316 stainless-steel pump head and
-   connectors. ~400 mL/min free flow, ~0.9–1.0 bar max pressure. Speed set by
-   supply voltage 3.0–6.0 V dc. Barbs for 2.4 mm ID tubing. Sold singly
-   (TCS shop, £119.50; RS Components ref. 8170716 — confirm).
-   Brushed sibling D260S-V: same materials, ~450 mL/min.
-2. **Peristaltic pump with Viton (FKM) tubing**, e.g. Masterflex L/S 16 Viton
-   (3.1 mm ID, ~0.8–480 mL/min for water). Often already in a lab; only the
-   tubing touches the gas. Gas flow will differ from the water rating —
-   measure it with the MFC.
-3. **Hilintec S23** (brushless, FKM diaphragm and valves, PA6 head, ≥0.85
-   L/min) or **Bodenpump** (EPDM standard, FKM optional, 1–2 L/min) —
-   backups; single-unit sale not confirmed.
+| # | Pump | Flow | Wetted parts | Motor | Single unit |
+|---|---|---|---|---|---|
+| 1 | TCS D260BLX-V, via RS Components (ref. 8170716) or Servoflo | ~400 mL/min | FKM, 316 SS head | Brushless, 3–6 V | Yes, ~£120 |
+| 2 | Sensidyne AAA series | 235–1410 cc/min | Viton diaphragm option | Brushless option, 3/6/12 V | To confirm |
+| 3 | Hilintec S23 | ≥0.85 L/min | FKM diaphragm and valves, PA6 head | Brushless, 12 V | To confirm |
+| 4 | Bodenpump BD-05T01.51500B | 1–1.5 L/min | EPDM std, FKM option | Brushless | To confirm |
+| 5 | Perimax PMP216V peristaltic, Viton tube | ≤35 mL/min | Viton tube only | 12 V | Yes, ~$94 |
 
-Last resort for a short PoC only: an EPDM micro pump (e.g. KNF NMP 03/05),
-with a blank run before every test and no absolute calibration.
+Notes:
+- 5 covers only the first low-flow steps (10–30 sccm), not 200 sccm. A lab
+  peristaltic drive with Masterflex L/S 16 Viton tubing covers the full range.
+- Eliminated: Boxer (FKM only on the 18 L/min 3KD; 22K is EPDM/silicone),
+  Cole-Parmer catalogue pumps (all ≥ several L/min), Senior Metal Bellows
+  MB-21 (all-steel, ideal materials, but ~5.7 slm and ~$2000+).
+- Last resort for a short PoC only: an EPDM micro pump, with a blank run before
+  every test and no absolute calibration.
 
 ## Open items
 
