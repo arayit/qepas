@@ -39,6 +39,44 @@ Note how close that is to the N2O work — R15 sits at 1297.8314, so 1310 is
 only ~12 cm-1 away, in a region whose water background is already
 characterised from exp4/exp7.
 
+
+## (Z)-3-hexenyl acetate (CAS 3681-71-8) — the GLV ester from cut grass
+
+**No gas-phase IR in NIST** (checked 27 Oct 2026: the WebBook entry has only
+MS and GC data; the (E)-2 isomer likewise). Two substitutes:
+
+1. **n-Hexyl acetate (CAS 142-92-7), NIST gas phase** — same acetate group on a
+   saturated C6 chain. File `hexyl_acetate.csv`. Ranked exactly like ethyl
+   acetate: strongest band 1238, best set point **1232.46**, water **0.000 mV**
+   (205 Torr, 14 Torr H2O), FWHM 32 cm-1.
+2. **(Z)-3-hexenyl acetate itself, liquid ATR** (SpectraBase JY3GdO5RDHr via
+   PubChem CID 5363388): tallest peak **≈1233 cm-1**; the capillary-film FTIR
+   (9jzzCTGPimz) has its C=O at ≈1735. Gas-phase bands of esters sit within a
+   few cm-1 of the liquid, so the acetate band is expected at 1233 ± 5 in the
+   gas. Our 1232.46 set point is inside the band top either way; the final set
+   point is chosen by scanning the real compound in the bottle test.
+
+Figure: `figures/hexyl_acetate_nist.{pdf,png}`.
+
+**Why this is the PoC compound.** It is what the plant emits after cutting, so
+the dosed calibration and the wound burst are the same molecule:
+
+- D'Auria et al. 2007, *Plant J.* 49:194 — in Arabidopsis "upon mechanical
+  damage, the (Z)-3-hexen-1-yl acetate emission peaked after 5 min and
+  declined to pre-damage levels after 90 min"; the early ester comes from CHAT
+  enzyme already present in the leaf.
+- Ameye et al. 2018, *New Phytol.* 220:666 (p. 675) — hexenal "peaked 5 min
+  after wounding, declined rapidly and coincided with an increase of hexenyl
+  alcohols and acetates" (citing Fall et al. 1999); wounded Arabidopsis released
+  more Z-3-HAC than herbivore-attacked plants.
+- Tholl et al. 2006, *Plant J.* 45:540 — lists "(Z)-3-hexenal and
+  (Z)-3-hexenyl acetate" as the typical C6 green-leaf volatiles.
+- Caveat: Brilli et al. 2011 (PTR-TOF, *Dactylis*) report the acetates as the
+  slowest, last GLVs after wounding. Timing differs by species; cat grass is a
+  grass like *Dactylis*, so expect the ester to lag the aldehyde by minutes.
+
+Safety: FEMA GRAS 3171, GHS H226 only, no OSHA limit, flash point 57 °C.
+
 ## Method note
 
 A broad band can be *slid* into a water gap: moving ethyl acetate's set point
@@ -50,6 +88,5 @@ set-point reproducibility before trusting it.
 
 ## Still needed
 
-- (Z)-3-hexenyl acetate — the GLV ester, not yet pulled
 - Quantitative spectra (PNNL/NWIR, or DTIC ADA392033 for methyl salicylate)
   to turn these into cross-sections, calibration slopes and detection limits
