@@ -3,10 +3,12 @@
 
 (a) full NIST spectrum, MIRcat window shaded
 (b) zoom on 1150-1350 cm-1 with the chosen set points and N2O R15
-(c) water absorption in the same window (HITRAN, laser-convolved), log scale
+(c) water background in the same window, in mV, same x-axis as (b)
 
 The NIST absorbance scale is arbitrary (no path length or concentration), so
-(a) and (b) are normalised to the strongest band. Water in (c) is absolute.
+(a) and (b) are normalised to the strongest band. Water in (c) is the HITRAN
+absorption converted to lock-in mV with the R14 responsivity anchor (B_RESP);
+tall lines are clipped so the floor under each set point stays readable.
 
 Usage: python3 figures/methyl_salicylate_nist.py [--par path/to/hitran.par]
 Output: figures/methyl_salicylate_nist.{pdf,png}
@@ -47,8 +49,12 @@ water = vbr.convolve_laser(vbr.water_alpha(grid, vbr.load_water(args.par), P_H2O
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8,
                      "axes.edgecolor": INK2, "axes.labelcolor": INK, "xtick.color": INK2,
                      "ytick.color": INK2, "axes.spines.top": False, "axes.spines.right": False})
-fig, axes = plt.subplots(3, 1, figsize=(7.0, 7.4), gridspec_kw={"height_ratios": [1, 1.2, 1]})
-a, b, c = axes
+fig = plt.figure(figsize=(7.0, 7.6))
+gs = fig.add_gridspec(3, 1, height_ratios=[1, 1.2, 1], hspace=0.55)
+a = fig.add_subplot(gs[0])
+b = fig.add_subplot(gs[1])
+c = fig.add_subplot(gs[2], sharex=b)
+axes = [a, b, c]
 
 a.axvspan(*MIRCAT, color=GRID, lw=0)
 a.text(np.mean(MIRCAT), 1.04, "MIRcat range", ha="center", va="bottom", color=INK2)
@@ -64,29 +70,42 @@ for x, lab in SET_POINTS:
     for ax in (b, c):
         ax.axvline(x, color=INK2, lw=0.8, ls="-", zorder=0)
     b.text(x, 1.13, lab, ha="center", va="bottom", color=INK, fontsize=7)
-for ax in (b, c):
-    ax.axvline(R15, color=INK2, lw=0.8, ls=(0, (3, 2)), zorder=0)
+b.axvline(R15, ymax=0.82, color=INK2, lw=0.8, ls=(0, (3, 2)), zorder=0)
+c.axvline(R15, color=INK2, lw=0.8, ls=(0, (3, 2)), zorder=0)
 b.text(R15 - 1.0, 0.05, "N₂O R15", ha="left", va="bottom", color=INK2, fontsize=7)
 b.set_xlim(ZOOM[1], ZOOM[0])
 b.set_ylim(0, 1.32)
 b.set_ylabel("Absorbance (norm.)")
 b.set_title("(b) Our window, with QEPAS set points", loc="left", color=INK, fontsize=9)
 
-c.semilogy(grid, np.maximum(water, 1e-9), color=C_H2O, lw=0.8)
-c.set_xlim(ZOOM[1], ZOOM[0])
-c.set_ylim(1e-8, 1e-3)
-c.set_ylabel("H₂O absorption (cm⁻¹)")
+NOISE = 0.12                       # mV, 1-sigma blank (exp9)
+YMAX = 0.5                         # mV; lines above this are clipped
+w_mv = water * vbr.B_RESP
+c.fill_between(grid, 0, np.minimum(w_mv, YMAX), color=C_H2O, alpha=0.25, lw=0)
+c.plot(grid, np.minimum(w_mv, YMAX), color=C_H2O, lw=0.8)
+c.axhline(NOISE, color=INK, lw=0.9, ls=(0, (4, 2)))
+c.text(1196, NOISE + 0.012, "blank noise 0.12 mV", ha="left", va="bottom", color=INK, fontsize=7,
+       bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none"))
+for x, _ in SET_POINTS:
+    v = float(np.interp(x, grid, w_mv))
+    c.annotate(f"{v:.3f} mV", xy=(x, v), xytext=(x, 0.36), ha="center", va="bottom", fontsize=7,
+               color=INK, arrowprops=dict(arrowstyle="-", color=INK2, lw=0.6),
+               bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none"))
+c.set_ylim(0, YMAX)
+c.set_ylabel("H₂O background (mV)")
 c.set_xlabel("Wavenumber (cm⁻¹)")
-c.set_title(f"(c) Water, HITRAN, {vbr.P_TORR:.0f} Torr total, {P_H2O:.0f} Torr H₂O, laser-convolved",
-            loc="left", color=INK, fontsize=9)
+c.set_title(f"(c) Water background, HITRAN, {vbr.P_TORR:.0f} Torr, {P_H2O:.0f} Torr H₂O (lab air); "
+            f"lines above {YMAX} mV clipped", loc="left", color=INK, fontsize=9)
+b.tick_params(labelbottom=True)
+b.set_xlabel("Wavenumber (cm⁻¹)")
 
 for ax in axes:
     ax.grid(axis="y", color=GRID, lw=0.6)
     ax.set_axisbelow(True)
 a.set_xlabel("Wavenumber (cm⁻¹)")
-fig.text(0.01, 0.005, "NIST scale is arbitrary (no concentration given): positions and shapes only. "
-         "Source: NIST WebBook / Sadtler-EPA, CAS 119-36-8.", color=INK2, fontsize=6.5)
-fig.tight_layout(rect=(0, 0.02, 1, 1))
+fig.text(0.01, 0.005, "NIST scale is arbitrary: positions and shapes only (NIST WebBook / Sadtler-EPA, CAS 119-36-8). "
+         "mV via R14 responsivity anchor, +-30-40 %.", color=INK2, fontsize=6.5)
+fig.subplots_adjust(left=0.1, right=0.97, top=0.96, bottom=0.08)
 out = ROOT / "figures" / "methyl_salicylate_nist"
 for ext in ("pdf", "png"):
     fig.savefig(f"{out}.{ext}", dpi=200, facecolor="white")
