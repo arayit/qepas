@@ -77,6 +77,25 @@ the dosed calibration and the wound burst are the same molecule:
 
 Safety: FEMA GRAS 3171, GHS H226 only, no OSHA limit, flash point 57 °C.
 
+Does the cis C=C move the band? Checked on NIST gas-phase pairs (all Sadtler-EPA,
+4 cm⁻¹ step; `figures/cc_bond_effect.py`):
+
+| Compound | C=C position | C–O band peak (cm⁻¹) |
+|---|---|---|
+| n-propyl acetate (`propyl_acetate.csv`) | none | 1238 |
+| allyl acetate (`allyl_acetate.csv`) | one carbon from ester O | 1234 |
+| n-hexyl acetate (`hexyl_acetate.csv`) | none | 1238 |
+| (Z)-3-hexenyl acetate (target) | two CH₂ from ester O | not in NIST |
+
+- Allyl acetate puts the C=C closer to the ester than our target does, and the band
+  moves by 4 cm⁻¹ (one data point); the shape is unchanged. The target sits between
+  allyl and hexyl, so expect a peak at about 1234–1238, inside the ~30 cm⁻¹ band.
+- 1-hexanol vs (Z)-3-hexen-1-ol (`1_hexanol.csv`, `z3_hexenol.csv`, same chain and
+  C=C as the target) shows what the C=C adds: a weak C=C stretch near 1654 and
+  shifted chain CH₂ bands near 1182 and 1310. In the ester these sit under a C–O
+  band several times stronger, so they can only add small shoulders.
+- Still to confirm by a laser scan over 1180–1300 cm⁻¹ in the first measurement.
+
 ## Method note
 
 A broad band can be *slid* into a water gap: moving ethyl acetate's set point
